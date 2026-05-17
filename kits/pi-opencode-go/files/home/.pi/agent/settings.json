@@ -1,0 +1,5 @@
+{
+  "enabledModels": [
+    "opencode-go/*"
+  ]
+}

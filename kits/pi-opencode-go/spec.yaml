@@ -1,0 +1,49 @@
+schemaVersion: "1"
+kind: agent
+name: pi-opencode-go
+displayName: Pi (OpenCode Go)
+description: Pi coding agent using OpenCode Go as the model provider.
+
+agent:
+  image: "askgar/sbx-dotnet-docker"
+  aiFilename: AGENTS.md
+  persistence: persistent
+  entrypoint:
+    run: [pi]
+
+credentials:
+  sources:
+    opencode-go:
+      env:
+        - OPENCODE_API_KEY
+
+network:
+  allowedDomains:
+    - "registry.npmjs.org:443"
+    - "*.npmjs.org:443"
+    - "opencode.ai:443"
+    - "*.opencode.ai:443"
+  serviceDomains:
+    opencode.ai: opencode-go
+  serviceAuth:
+    opencode-go:
+      headerName: Authorization
+      valueFormat: "Bearer %s"
+
+environment:
+  proxyManaged:
+    - OPENCODE_API_KEY
+
+commands:
+  install:
+    - command: "npm install -g @earendil-works/pi-coding-agent"
+      user: "1000"
+      description: Install Pi
+
+memory: |
+  ## Sandbox environment
+
+  You are running inside a Docker sandbox. The workspace is mounted at
+  its absolute host path. `sudo` is passwordless; use it for package
+  installs. Docker is available inside the sandbox; containers you start
+  are isolated in the microVM.

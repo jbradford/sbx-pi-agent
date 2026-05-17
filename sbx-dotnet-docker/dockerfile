@@ -1,0 +1,8 @@
+FROM docker/sandbox-templates:shell-docker
+
+USER root
+RUN apt-get update && \
+    apt-get install -y dotnet-sdk-10.0 && \
+    rm -rf /var/lib/apt/lists/*
+
+USER agent
