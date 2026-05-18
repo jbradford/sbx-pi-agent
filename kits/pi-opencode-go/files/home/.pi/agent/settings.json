@@ -1,4 +1,7 @@
 {
+  "packages": [
+    "npm:pi-rtk-optimizer"
+  ],
   "enabledModels": [
     "opencode-go/*"
   ]
