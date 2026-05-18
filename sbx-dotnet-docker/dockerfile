@@ -1,8 +1,13 @@
 FROM docker/sandbox-templates:shell-docker
 
+# Install dotnet
 USER root
 RUN apt-get update && \
     apt-get install -y dotnet-sdk-10.0 && \
     rm -rf /var/lib/apt/lists/*
 
 USER agent
+
+# Install rtk
+RUN curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh && \
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
