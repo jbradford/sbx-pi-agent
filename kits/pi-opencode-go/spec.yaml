@@ -39,6 +39,9 @@ commands:
     - command: "npm install -g @earendil-works/pi-coding-agent"
       user: "1000"
       description: Install Pi
+    - command: "pi install npm:pi-rtk-optimizer"
+      user: "1000"
+      description: Install RTK Optimizer extension
 
 memory: |
   ## Sandbox environment
